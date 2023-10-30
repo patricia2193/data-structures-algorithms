@@ -1,4 +1,4 @@
-public class HashMap {
+public class HashMaps {
     public static void main(String[] args) {
     }
 }

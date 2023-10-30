@@ -3,7 +3,7 @@ public class LinkedList {
     Node tail;
     int length;
 
-    public class Node{
+    public class Node {
         int value;
         Node next;
 
@@ -17,11 +17,11 @@ public class LinkedList {
     public void add(int value) {
         Node newNode = new Node(value);
 
-        if(head == null) {
+        if (head == null) {
             head = newNode;
         } else {
             Node current = head;
-            while(current.next != null) {
+            while (current.next != null) {
                 current = current.next;
             }
             current.next = newNode;
@@ -29,17 +29,17 @@ public class LinkedList {
     }
 
     public void delete(int value) {
-        if(head == null) {
+        if (head == null) {
             return;
         }
 
-        if(head.value == value) {
+        if (head.value == value) {
             head = head.next;
         }
 
         Node current = head;
-        while(current.next != null) {
-            if(current.next.value == value) {
+        while (current.next != null) {
+            if (current.next.value == value) {
                 current.next = current.next.next;
             }
             current = current.next;
@@ -48,7 +48,7 @@ public class LinkedList {
 
     public void display() {
         Node current = head;
-        while(current != null) {
+        while (current != null) {
             System.out.print(current.value + " -> ");
             current = current.next;
         }
@@ -65,6 +65,38 @@ public class LinkedList {
         }
 
         return slow;
+    }
+
+    public boolean hasCycle(Node head) {
+        if (head == null) return false;
+
+        Node fast = head;
+        Node slow = head;
+
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Node reverseList(Node head) {
+        if(head == null) return null;
+
+        Node current = head;
+        Node prev = null;
+        Node next = null;
+
+        while(current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+        return prev;
     }
 
     public static void main(String[] args) {
